@@ -1,42 +1,26 @@
 #!/usr/bin/env python
 
-# Simply testing how to light pixels on button presses for now.
+# Press button A, lights turn on and gradually dim.
 
 import signal
 import buttonshim
 import blinkt
 import time
+import numpy as np
 
-blinkt.set_brightness(0.1)
+blinkt.clear()
 
+step_down = 187.5 / 20
+test_step_down = 0.05
+
+# Press button A to start a Pomodoro.
 @buttonshim.on_press(buttonshim.BUTTON_A)
 def button_a(button, pressed):
-    blinkt.clear()
-    blinkt.set_pixel(7, 255, 0, 0)
-    blinkt.show()
-
-@buttonshim.on_press(buttonshim.BUTTON_B)
-def button_b(button, pressed):
-    blinkt.clear()
-    blinkt.set_pixel(6, 255, 127, 0)
-    blinkt.show()
-
-@buttonshim.on_press(buttonshim.BUTTON_C)
-def button_c(button, pressed):
-    blinkt.clear()
-    blinkt.set_pixel(5, 255, 255, 0)
-    blinkt.show()
-
-@buttonshim.on_press(buttonshim.BUTTON_D)
-def button_d(button, pressed):
-    blinkt.clear()
-    blinkt.set_pixel(4, 0, 255, 0)
-    blinkt.show()
-
-@buttonshim.on_press(buttonshim.BUTTON_E)
-def button_e(button, pressed):
-    blinkt.clear()
-    blinkt.set_pixel(3, 0, 0, 255)
-    blinkt.show()
+    blinkt.set_all(255, 0, 0, brightness=0.2)
+    for x in range(7, -1, -1):
+        for i in np.arange(0.2, 0, -0.01):
+            blinkt.set_pixel(x, 255, 0, 0, brightness=i)
+            blinkt.show()
+            time.sleep(test_step_down)
 
 signal.pause()
