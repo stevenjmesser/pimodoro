@@ -56,8 +56,6 @@ def button_c(button, pressed):
 # Press button E for to shut down.
 @buttonshim.on_press(buttonshim.BUTTON_E)
 def button_e(button, pressed):
-    blinkt.clear()
-    blinkt.show()
     call("sudo shutdown now", shell=True)
 
 signal.pause()
