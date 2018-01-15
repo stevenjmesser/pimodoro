@@ -34,9 +34,9 @@ shortbreak_length = 2 * 60
 longbreak_length = 7 * 60
 
 # Stepdown times to fade the lights.
-pom_fade = (pomodoro_length / 8) / 10
-sb_fade = (shortbreak_length / 8) / 10
-lb_fade = (longbreak_length / 8) / 10
+pom_fade = (pomodoro_length / 8) / 20
+sb_fade = (shortbreak_length / 8) / 20
+lb_fade = (longbreak_length / 8) / 20
 
 # Press button A to start a pomodoro.
 @buttonshim.on_press(buttonshim.BUTTON_A)
@@ -56,6 +56,8 @@ def button_c(button, pressed):
 # Press button E for to shut down.
 @buttonshim.on_press(buttonshim.BUTTON_E)
 def button_e(button, pressed):
+    blinkt.clear()
+    blinkt.show()
     call("sudo shutdown now", shell=True)
 
 signal.pause()
