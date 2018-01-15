@@ -6,7 +6,10 @@ import pimodoro
 import random
 import time
 
-from blinkt import set_clear_on_exit, set_pixel, show, clear
+from blinkt import set_pixel, show, clear
+from subprocess import call
+
+buttonshim.set_pixel(0, 0, 0)
 
 # Random lights will blink when first launched.
 r = random.randint(0, 255)
@@ -40,5 +43,12 @@ def button_b(button, pressed):
 @buttonshim.on_press(buttonshim.BUTTON_C)
 def button_c(button, pressed):
     pimodoro.longbreak()
+
+# Press button E for to shut down.
+@buttonshim.on_press(buttonshim.BUTTON_E)
+def button_e(button, pressed):
+    blinkt.clear()
+    blinkt.show()
+    call("sudo shutdown now", shell=True)
 
 signal.pause()
