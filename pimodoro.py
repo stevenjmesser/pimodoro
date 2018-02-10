@@ -6,9 +6,9 @@ import numpy as np
 
 # A light sequence.
 def lightsequence(r, g, b, fade_time):
-    set_all(r, g, b, brightness=0.2)
+    set_all(r, g, b, brightness=0.1)
     for x in range(7, -1, -1):
-        for i in np.arange(0.2, 0, -0.01):
+        for i in np.arange(0.1, 0, -0.01):
             set_pixel(x, r, g, b, brightness=i)
             show()
             time.sleep(fade_time)

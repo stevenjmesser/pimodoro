@@ -28,30 +28,20 @@ for x in range(16):
 blinkt.clear()
 blinkt.show()
 
-# Set Pomodoro, short break and long break lengths in minutes. We multiply by 60 to get seconds.
-pomodoro_length = 25 * 60
-shortbreak_length = 2 * 60
-longbreak_length = 7 * 60
-
-# Stepdown times to fade the lights.
-pom_fade = (pomodoro_length / 8) / 20
-sb_fade = (shortbreak_length / 8) / 20
-lb_fade = (longbreak_length / 8) / 20
-
 # Press button A to start a pomodoro.
 @buttonshim.on_press(buttonshim.BUTTON_A)
 def button_a(button, pressed):
-    pimodoro.lightsequence(255, 0, 0, pom_fade)
+    pimodoro.lightsequence(255, 0, 0, 18.75)
 
 # Press button B to start a short break.
 @buttonshim.on_press(buttonshim.BUTTON_B)
 def button_b(button, pressed):
-    pimodoro.lightsequence(0, 255, 0, sb_fade)
+    pimodoro.lightsequence(0, 255, 0, 1.5)
 
 # Press button C to start a long break.
 @buttonshim.on_press(buttonshim.BUTTON_C)
 def button_c(button, pressed):
-    pimodoro.lightsequence(0, 0, 255, lb_fade)
+    pimodoro.lightsequence(0, 0, 255, 5.25)
 
 # Press button E for to shut down.
 @buttonshim.on_press(buttonshim.BUTTON_E)
